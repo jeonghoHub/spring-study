@@ -1,20 +1,17 @@
 package domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Item {
-
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Item {
     @Id @GeneratedValue
-    @Column(name = "item_id")
     private Long id;
 
     private String name;
     private int price;
-    private int stockQuantity;
 
     public Long getId() {
         return id;
@@ -38,13 +35,5 @@ public class Item {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public int getStockQuantity() {
-        return stockQuantity;
-    }
-
-    public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;
     }
 }

@@ -1,5 +1,6 @@
+import domain.Item;
 import domain.Member;
-import domain.Order;
+import domain.Movie;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,7 +18,19 @@ public class JpaMain {
 
         try{
 
-            Order order = em.find(Order.class, 1L);
+            Movie movie = new Movie();
+            movie.setDirector("aaaa");
+            movie.setActor("bbbb");
+            movie.setName("바람과 함께사라지다");
+            movie.setPrice(10000);
+
+            em.persist(movie);
+
+            em.flush();
+            em.clear();
+
+            Item item = em.find(Item.class, movie.getId());
+            System.out.println(item);
 
             tx.commit();
         } catch(Exception e) {
