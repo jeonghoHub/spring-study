@@ -15,6 +15,7 @@
       <list>
         <option value="Enum" />
         <option value="Class" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -57,7 +58,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -67,6 +68,9 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="domain" />
       <recent name="helloJPA" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\abc\Desktop\github 스프링부트\자바 ORM 표준 JPA 프로그래밍\src\main\java" />
     </key>
   </component>
   <component name="RunManager" selected="Application.JpaMain">
