@@ -19,6 +19,10 @@ public class OrderItem {
     private int orderPrice;
     private int count;
 
+    public void testChange(Order order) {
+        order.getOrderItems().add(this);
+    }
+
     public Long getId() {
         return id;
     }
