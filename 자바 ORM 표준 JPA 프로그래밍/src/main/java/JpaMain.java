@@ -17,22 +17,28 @@ public class JpaMain {
         tx.begin();
 
         try{
-
-            Child child1 = new Child();
-            Child child2 = new Child();
-
             Parent parent = new Parent();
-            parent.addChild(child1);
-            parent.addChild(child2);
+            parent.setName("hello");
 
-            em.persist(parent);
 
-            em.flush();
-            em.clear();
-
-            Parent parent1 = em.find(Parent.class, parent.getId());
-//            parent1.getChildList().remove(0);
-            em.remove(parent1);
+//            Member member = new Member();
+//            member.setName("member1");
+//            member.setHomeAddress(new Address("homecity", "street","10000"));
+//
+//            member.getFavoriteFoods().add("치킨");
+//            member.getFavoriteFoods().add("족발");
+//            member.getFavoriteFoods().add("피자");
+//
+//            member.getAddressesHistory().add(new Address("old1", "street","10000"));
+//            member.getAddressesHistory().add(new Address("old2", "street","10000"));
+//
+//            em.persist(member);
+//
+//            em.flush();
+//            em.clear();
+//
+//            System.out.println("======== START =======");
+//            Member findMember = em.find(Member.class, member.getId());
 
             tx.commit();
         } catch(Exception e) {

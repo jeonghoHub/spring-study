@@ -81,6 +81,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ValueMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="domain.ValueMain" />
+      <module name="ex1-hello-jpa" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="hello" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="helloJPA.hello" />
       <module name="ormStudy" />
@@ -97,6 +110,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.JpaMain" />
+        <item itemvalue="Application.ValueMain" />
         <item itemvalue="Application.hello" />
       </list>
     </recent_temporary>
