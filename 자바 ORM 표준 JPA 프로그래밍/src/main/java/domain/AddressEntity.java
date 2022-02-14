@@ -15,10 +15,6 @@ public class AddressEntity {
     public AddressEntity() {
     }
 
-    public AddressEntity(Address address) {
-        this.address = address;
-    }
-
     public AddressEntity(String city, String street, String zipcode) {
         this.address = new Address(city, street, zipcode);
     }

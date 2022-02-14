@@ -1,4 +1,4 @@
-import domain.*;
+package jpql;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
