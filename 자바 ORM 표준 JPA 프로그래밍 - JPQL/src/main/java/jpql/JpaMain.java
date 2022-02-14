@@ -1,10 +1,8 @@
 package jpql;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 public class JpaMain {
@@ -17,10 +15,30 @@ public class JpaMain {
         tx.begin();
 
         try{
-            List<Member> resultList = em.createQuery(
-                    "select m From Member m where m.name like '%Kim%'",
-                    Member.class
-            ).getResultList();
+            Team team = new Team();
+            team.setName("teamA");
+            em.persist(team);
+
+            Member member = new Member();
+            member.setUsername(null);
+            member.setAge(10);
+            member.setType(MemberType.ADMIN);
+
+            member.setTeam(team);
+
+            em.persist(member);
+
+            em.flush();
+            em.clear();
+
+            String query = "select m.username from Team t join t.members m";
+
+            List<String> resultList = em.createQuery(query, String.class)
+                    .getResultList();
+
+            for (String s : resultList) {
+                System.out.println("s = " + s);
+            }
 
             tx.commit();
         } catch(Exception e) {
