@@ -23,13 +23,17 @@ public class Member {
     @Column(name = "FOOD_NAME")
     private Set<String> favoriteFoods = new HashSet<>();
 
-    @ElementCollection
-    @CollectionTable(name = "ADDRESS", joinColumns = @JoinColumn(name = "MEMBER_ID"))
-    private List<Address> addressesHistory = new ArrayList<>();
+//    @ElementCollection
+//    @CollectionTable(name = "ADDRESS", joinColumns = @JoinColumn(name = "MEMBER_ID"))
+//    private List<Address> addressesHistory = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "MEMBER_ID")
+    private List<AddressEntity> addressesHistory = new ArrayList<>();
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @JoinColumn(name = "TEAM_ID")
     private Team team;
 
     @OneToMany(mappedBy = "member")
@@ -51,7 +55,12 @@ public class Member {
     }
 
     public void setTeam(Team team) {
+        if(this.team != null) {
+            this.team.getMembers().remove(this);
+        }
         this.team = team;
+        team.getMembers().add(this);
+
     }
 
     public String getName() {
@@ -87,11 +96,11 @@ public class Member {
         this.favoriteFoods = favoriteFoods;
     }
 
-    public List<Address> getAddressesHistory() {
+    public List<AddressEntity> getAddressesHistory() {
         return addressesHistory;
     }
 
-    public void setAddressesHistory(List<Address> addressesHistory) {
+    public void setAddressesHistory(List<AddressEntity> addressesHistory) {
         this.addressesHistory = addressesHistory;
     }
 }
