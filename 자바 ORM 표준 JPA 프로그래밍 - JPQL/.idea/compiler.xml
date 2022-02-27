@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="ex1-hello-jpa" />
         <module name="자바 ORM 표준 JPA 프로그래밍 - JPQL" />
       </profile>
     </annotationProcessing>

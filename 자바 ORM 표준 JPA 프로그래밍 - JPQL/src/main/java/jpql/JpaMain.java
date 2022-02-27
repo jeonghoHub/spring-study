@@ -16,46 +16,32 @@ public class JpaMain {
 
         try{
             Team team = new Team();
-            team.setName("팀A");
+            team.setName("A");
             em.persist(team);
 
             Team teamB = new Team();
-            teamB.setName("팀B");
+            teamB.setName("B");
             em.persist(teamB);
 
             Member member = new Member();
-            member.setUsername("회원1");
+            member.setUsername("one");
             member.setTeam(team);
             em.persist(member);
 
             Member member1 = new Member();
-            member1.setUsername("회원2");
+            member1.setUsername("two");
             member1.setTeam(team);
             em.persist(member1);
 
             Member member2 = new Member();
-            member2.setUsername("회원3");
+            member2.setUsername("three");
             member2.setTeam(teamB);
             em.persist(member2);
 
-            em.flush();
-            em.clear();
+            int resultCount = em.createQuery("update Member m set m.age = 20")
+                    .executeUpdate();
 
-            String query = "select m from Member m join fetch m.team";
-
-            List<Member> resultList = em.createQuery(query, Member.class)
-                    .getResultList();
-
-            for (Member member3 : resultList) {
-                System.out.println("member = " + member3.getUsername() + "| team = " + member3.getTeam().getName());
-            }
-
-//            for (Team team1 : resultList) {
-//                System.out.println("team = " + team1.getName() + "|" + team1.getMembers().size());
-//                for(Member member4 : team1.getMembers()) {
-//                    System.out.println("-> member = " + member4);
-//                }
-//            }
+            System.out.println("resultCount = " + resultCount);
 
             tx.commit();
         } catch(Exception e) {
