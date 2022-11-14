@@ -17,7 +17,7 @@ import java.util.List;
 public class OrderRepository {
     private final EntityManager em;
 
-    public void save(Order order){
+    public void save(Order order) {
         em.persist(order);
     }
 
@@ -25,7 +25,7 @@ public class OrderRepository {
         return em.find(Order.class, id);
     }
 
-    public List<Order> findAll(OrderSearch orderSearch){
+    public List<Order> findAll(OrderSearch orderSearch) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Order> cq = cb.createQuery(Order.class);
         Root<Order> o = cq.from(Order.class);
@@ -34,12 +34,12 @@ public class OrderRepository {
         List<Predicate> criteria = new ArrayList<>();
 
         //주문 상태 검색
-        if(orderSearch.getOrderStatus() != null) {
+        if (orderSearch.getOrderStatus() != null) {
             Predicate status = cb.equal(o.get("status"), orderSearch.getOrderStatus());
             criteria.add(status);
         }
         //회원 이름 검색
-        if(StringUtils.hasText(orderSearch.getMemberName())) {
+        if (StringUtils.hasText(orderSearch.getMemberName())) {
             Predicate name =
                     cb.like(m.get("name"), "%" + orderSearch.getMemberName() + "%");
             criteria.add(name);
@@ -61,5 +61,17 @@ public class OrderRepository {
                         " join fetch o.member m" +
                         " join fetch o.delivery d", Order.class
         ).getResultList();
+    }
+
+    public List<Order> findAllWithItem() {
+        return em.createQuery(
+                        "select distinct o from Order o" +
+                                " join fetch o.member m" +
+                                " join fetch o.delivery d" +
+                                " join fetch o.orderItems oi" +
+                                " join fetch oi.item i", Order.class)
+                .setFirstResult(1)
+                .setMaxResults(100)
+                .getResultList();
     }
 }
